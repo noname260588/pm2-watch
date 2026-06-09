@@ -245,6 +245,9 @@ export default function App() {
                             </td>
                             <td className="p-4">
                               <div className="flex items-center justify-center gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+                                <button onClick={() => { setActiveTab('logs'); setSelectedLogProcess(proc.name); }} className="p-2 rounded-lg bg-slate-800 border border-slate-700 hover:bg-purple-500 hover:border-purple-500 text-white transition-all shadow-lg" title="View Logs">
+                                  <TerminalSquare className="w-4 h-4" />
+                                </button>
                                 <button onClick={() => handleAction(server.serverId, proc.id, 'restart')} className="p-2 rounded-lg bg-slate-800 border border-slate-700 hover:bg-emerald-500 hover:border-emerald-500 text-white transition-all shadow-lg" title="Restart">
                                   <RotateCcw className="w-4 h-4" />
                                 </button>
