@@ -25,10 +25,25 @@
 
 ## 🏗 Kiến trúc Hệ thống
 
-Hệ thống được chia thành 3 phần chính (Monorepo):
-- **`/backend` (Hub)**: Máy chủ trung tâm (Express + Socket.io) quản lý State của các cụm máy chủ và định tuyến lệnh/logs.
-- **`/agent` (Spoke)**: Client cài đặt trên các máy chủ có chạy PM2. Thu thập dữ liệu OS và giao tiếp với PM2 API nội bộ, sau đó truyền về Hub.
-- **`/frontend`**: Ứng dụng web React + Vite + TailwindCSS, đóng vai trò Dashboard theo dõi và ra lệnh.
+Hệ thống được thiết kế theo mô hình **Hub-and-Spoke** hoàn chỉnh, chia thành 3 cấu phần chính (Monorepo):
+
+1. **`/backend` (Hub - Central Server)**:
+   - Máy chủ trung tâm (Express + Socket.io).
+   - Quản lý toàn bộ State và trạng thái kết nối của các Spoke (Agent) gửi về.
+   - Đóng vai trò là cầu nối (Router) định tuyến luồng Log Stream và các lệnh điều khiển (Restart/Stop) từ Frontend xuống đúng Agent tương ứng.
+   - Phân phối toàn bộ giao diện tĩnh (Frontend Build) ở chế độ Production.
+
+2. **`/agent` (Spoke - Node Client)**:
+   - Cài đặt trực tiếp trên các máy chủ cần giám sát (nơi đang chạy PM2).
+   - **Metrics Collector**: Kết nối sâu vào PM2 Bus API (`pm2.launchBus`) để lấy thông số (CPU, RAM, Req/min, Latency) và sự kiện của PM2.
+   - **Log Streamer**: Stream trực tiếp luồng stdout/stderr thời gian thực.
+   - **Zero-Config Log Rotator**: Tích hợp bộ máy quản lý vòng đời file log (tự động cắt file >10MB, nén gzip, tự xóa file cũ) trực tiếp bên trong nội bộ tiến trình, tránh phụ thuộc vào module lỗi của hệ điều hành.
+
+3. **`/frontend` (Dashboard UI)**:
+   - Xây dựng bằng React + Vite + TailwindCSS với giao diện Glassmorphism.
+   - **Global Dashboard**: Tự động tổng hợp và tính toán tài nguyên (Aggregated Metrics) của toàn bộ Cluster/Grid các máy chủ độc lập.
+   - **Real-time Engine**: Kết nối Socket.io liên tục để render các biểu đồ Recharts mượt mà.
+   - **FlexSearch Integration**: Lập chỉ mục và cho phép tìm kiếm Full-text siêu tốc nội dung log của bất kỳ Worker nào ngay trên trình duyệt (Client-side Search).
 
 ---
 
