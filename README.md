@@ -2,7 +2,7 @@
 
 **PM2-Watch PRO** is a real-time Centralized Monitoring System for Node.js clusters managed by PM2. Designed with a **Hub-and-Spoke** architecture and a modern **Glassmorphism Dark Mode** UI, it delivers an experience on par with professional APM (Application Performance Monitoring) solutions.
 
-![PM2-Watch Architecture](https://raw.githubusercontent.com/noname260588/pm2-watch/main/frontend/public/hero.png) *(Illustration)*
+![PM2-Watch Demo](https://raw.githubusercontent.com/noname260588/pm2-watch/main/frontend/public/demo.gif) *(Live Demo)*
 
 ---
 

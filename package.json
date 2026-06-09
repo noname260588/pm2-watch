@@ -1,6 +1,6 @@
 {
   "name": "@noname260588/pm2-watch",
-  "version": "1.2.10",
+  "version": "1.2.11",
   "main": "dummy.js",
   "workspaces": [
     "frontend",
