@@ -2,7 +2,7 @@
 
 **PM2-Watch PRO** là một hệ thống giám sát tập trung (Centralized Monitoring System) thời gian thực dành cho các cụm máy chủ Node.js chạy bằng PM2. Hệ thống được thiết kế theo cấu trúc Hub-and-Spoke với giao diện **Glassmorphism Dark Mode** hiện đại, mang lại trải nghiệm tương đương các hệ thống APM (Application Performance Monitoring) chuyên nghiệp.
 
-![PM2-Watch Architecture](https://raw.githubusercontent.com/noname260588/pm2-watch/main/frontend/public/hero.png) *(Hình ảnh minh họa)*
+![PM2-Watch Architecture](https://unpkg.com/@noname260588/pm2-watch/frontend/dist/hero.png) *(Hình ảnh minh họa)*
 
 ---
 
