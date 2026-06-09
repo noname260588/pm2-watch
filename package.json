@@ -7,9 +7,6 @@
     "backend",
     "agent"
   ],
-  "publishConfig": {
-    "registry": "https://npm.pkg.github.com"
-  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/noname260588/pm2-watch.git"
