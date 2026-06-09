@@ -39,9 +39,9 @@ Hệ thống được chia thành 3 phần chính (Monorepo):
 
 Thay vì phải tải mã nguồn và gõ từng lệnh, **PM2-Watch PRO** đã được đóng gói thành một Global CLI Tool cực kỳ chuyên nghiệp. 
 
-**Bước 1: Cài đặt trực tiếp từ GitHub (Yêu cầu Node.js)**
+**Bước 1: Cài đặt từ kho NPM (Yêu cầu Node.js)**
 ```bash
-npm install -g github:noname260588/pm2-watch
+npm install -g @noname260588/pm2-watch
 ```
 
 **Bước 2: Khởi động hệ thống**
@@ -62,6 +62,24 @@ Mở trình duyệt tại: `http://localhost:3000`
 - `pm2-watch logs`: Xem log của máy chủ trung tâm.
 
 *Lưu ý: Để PM2 tự động bật hệ thống khi VPS khởi động lại, hãy chạy `pm2 save` và `pm2 startup`.*
+
+---
+
+## 🔄 Hướng dẫn Cập nhật / Gỡ cài đặt
+
+**Cập nhật lên phiên bản mới nhất:**
+```bash
+pm2-watch stop
+npm cache clean --force
+npm install -g @noname260588/pm2-watch
+pm2-watch start
+```
+
+**Gỡ bỏ hoàn toàn khỏi hệ thống:**
+```bash
+pm2 delete pm2-watch-agent pm2-watch-backend
+npm uninstall -g @noname260588/pm2-watch
+```
 
 ---
 
