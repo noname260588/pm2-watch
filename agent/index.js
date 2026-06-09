@@ -38,7 +38,9 @@ socket.on('connect', () => {
       pm2.list((err, list) => {
         if (err) return;
         
-        const metrics = list.map(proc => ({
+        const metrics = list
+          .filter(proc => proc.name !== 'pm2-watch-backend' && proc.name !== 'pm2-watch-agent')
+          .map(proc => ({
           id: proc.pm_id,
           name: proc.name,
           pid: proc.pid,
@@ -77,6 +79,7 @@ socket.on('connect', () => {
       if (err) return console.error('[Agent] Error launching PM2 bus', err);
 
       bus.on('log:out', (data) => {
+        if (data.process.name === 'pm2-watch-backend' || data.process.name === 'pm2-watch-agent') return;
         socket.emit('agent:log', {
           process_id: data.process.pm_id,
           process_name: data.process.name,
@@ -87,6 +90,7 @@ socket.on('connect', () => {
       });
 
       bus.on('log:err', (data) => {
+        if (data.process.name === 'pm2-watch-backend' || data.process.name === 'pm2-watch-agent') return;
         socket.emit('agent:log', {
           process_id: data.process.pm_id,
           process_name: data.process.name,
