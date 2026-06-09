@@ -2,6 +2,7 @@ require('dotenv').config();
 const pm2 = require('pm2');
 const os = require('os');
 const { io } = require('socket.io-client');
+const { initLogRotation } = require('./logrotate');
 
 const SERVER_ID = process.env.SERVER_ID || 'server-1';
 const SERVER_NAME = process.env.SERVER_NAME || 'Node.js Server 1';
@@ -28,6 +29,9 @@ socket.on('connect', () => {
     }
     
     console.log('[Agent] Connected to local PM2 Daemon');
+
+    // Start built-in zero-config log rotation
+    initLogRotation();
 
     setInterval(() => {
       // 1. Gather PM2 Metrics

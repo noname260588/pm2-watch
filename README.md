@@ -19,6 +19,7 @@
    - Stream log (stdout/stderr) từ tất cả server theo thời gian thực.
    - Tích hợp bộ máy **FlexSearch** cho phép tìm kiếm lỗi Full-text siêu tốc độ ngay trên trình duyệt.
 6. **⚡ Remote Action Gateway**: Tương tác với process từ xa (Restart/Stop) trực tiếp trên giao diện Dashboard thông qua bảo mật WebSocket.
+7. **💾 Zero-Config Auto Log Rotation**: Tích hợp sẵn bộ máy quản lý vòng đời file log ngay trong Agent. Không cần cài đặt module ngoài, tự động cắt log khi vượt ngưỡng 10MB, nén Gzip (.gz) siêu tiết kiệm dung lượng, và tự động xóa sau 7 ngày! Bảo vệ máy chủ khỏi rủi ro tràn ổ cứng.
 
 ---
 
