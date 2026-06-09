@@ -123,7 +123,7 @@ io.on('connection', (socket) => {
 app.get('/api/status', (req, res) => res.send('PM2-Watch Central Backend is running.'));
 
 // Fallback for SPA routing
-app.get('*', (req, res) => {
+app.use((req, res) => {
   res.sendFile(path.join(distPath, 'index.html'));
 });
 
