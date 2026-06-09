@@ -39,9 +39,9 @@ Hệ thống được chia thành 3 phần chính (Monorepo):
 
 Thay vì phải tải mã nguồn và gõ từng lệnh, **PM2-Watch PRO** đã được đóng gói thành một Global CLI Tool cực kỳ chuyên nghiệp. 
 
-**Bước 1: Cài đặt qua NPM (Yêu cầu Node.js)**
+**Bước 1: Cài đặt trực tiếp từ GitHub (Yêu cầu Node.js)**
 ```bash
-npm install -g @noname260588/pm2-watch
+npm install -g github:noname260588/pm2-watch
 ```
 
 **Bước 2: Khởi động hệ thống**
@@ -50,8 +50,11 @@ Bạn chỉ cần gõ đúng 1 lệnh duy nhất ở bất kỳ đâu:
 pm2-watch start
 ```
 
-Hệ thống sẽ tự động kích hoạt 3 tiến trình chạy ngầm (Backend, Agent, và UI) thông qua PM2. 
-Mở trình duyệt tại: `http://localhost:5173`
+Lệnh này sẽ kích hoạt 2 tiến trình chạy ngầm:
+1. `pm2-watch-backend`: Khởi động máy chủ trung tâm kiêm Server phát giao diện tĩnh ở cổng **3000**.
+2. `pm2-watch-agent`: Khởi động Agent nội bộ thu thập dữ liệu.
+
+Mở trình duyệt tại: `http://localhost:3000`
 
 **Các lệnh CLI hỗ trợ:**
 - `pm2-watch start`: Bật hệ thống giám sát.

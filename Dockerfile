@@ -19,8 +19,8 @@ COPY --from=builder /app /app
 # Install PM2 globally for PM2-runtime
 RUN npm install -g pm2
 
-# Expose Frontend and Backend ports
-EXPOSE 5173 3000
+# Expose Backend (which also serves Frontend)
+EXPOSE 3000
 
 # Run the ecosystem using pm2-runtime (Docker optimized)
 CMD ["pm2-runtime", "ecosystem.config.js"]

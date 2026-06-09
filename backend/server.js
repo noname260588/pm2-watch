@@ -3,6 +3,7 @@ const express = require('express');
 const http = require('http');
 const { Server } = require('socket.io');
 const cors = require('cors');
+const path = require('path');
 
 const PORT = process.env.PORT || 3000;
 const AGENT_API_KEY = process.env.AGENT_API_KEY || 'default_secret';
@@ -10,6 +11,10 @@ const AGENT_API_KEY = process.env.AGENT_API_KEY || 'default_secret';
 const app = express();
 app.use(cors());
 app.use(express.json());
+
+// Serve static frontend files
+const distPath = path.join(__dirname, '../frontend/dist');
+app.use(express.static(distPath));
 
 const server = http.createServer(app);
 const io = new Server(server, { cors: { origin: '*' } });
@@ -115,6 +120,11 @@ io.on('connection', (socket) => {
   }
 });
 
-app.get('/', (req, res) => res.send('PM2-Watch Central Backend is running.'));
+app.get('/api/status', (req, res) => res.send('PM2-Watch Central Backend is running.'));
+
+// Fallback for SPA routing
+app.get('*', (req, res) => {
+  res.sendFile(path.join(distPath, 'index.html'));
+});
 
 server.listen(PORT, () => console.log(`[Backend] Listening on port ${PORT}`));

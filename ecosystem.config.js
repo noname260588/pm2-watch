@@ -23,16 +23,6 @@ module.exports = {
       env: {
         NODE_ENV: "production"
       }
-    },
-    {
-      name: "pm2-watch-ui",
-      script: "serve",
-      env: {
-        PM2_SERVE_PATH: path.join(__dirname, "frontend/dist").replace(/\\/g, '/'),
-        PM2_SERVE_PORT: 5173,
-        PM2_SERVE_SPA: 'true',
-        PM2_SERVE_HOMEPAGE: '/index.html'
-      }
     }
   ]
 };

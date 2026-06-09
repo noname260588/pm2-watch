@@ -18,7 +18,7 @@ function runCommand(cmd) {
 if (command === 'start') {
   console.log('🚀 Starting PM2-Watch PRO...');
   runCommand(`npx pm2 start "${ecosystemPath}"`);
-  console.log('\n✅ PM2-Watch PRO is now running on http://localhost:5173');
+  console.log('\n✅ PM2-Watch PRO is now running on http://localhost:3000');
   console.log('💡 Type "pm2-watch logs" to see logs, or "pm2-watch stop" to stop.');
 } else if (command === 'stop') {
   console.log('🛑 Stopping PM2-Watch PRO...');
