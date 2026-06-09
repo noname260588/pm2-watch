@@ -62,6 +62,22 @@ Mở trình duyệt tại: `http://localhost:5173`
 
 ---
 
+## 🐳 Triển khai bằng Docker (Docker Compose)
+
+Nếu bạn không muốn cài đặt Node.js trực tiếp lên server, bạn hoàn toàn có thể chạy PM2-Watch PRO dưới dạng một Container. Điều đặc biệt là Agent bên trong Container vẫn có thể giám sát được PM2 chạy trên máy Host!
+
+**Khởi động bằng Docker Compose:**
+```bash
+git clone https://github.com/noname260588/pm2-watch.git
+cd pm2-watch
+docker-compose up -d --build
+```
+
+**Bí mật đằng sau:**
+Hệ thống sử dụng kỹ thuật mount volume `~/.pm2:/root/.pm2:ro` để Agent bên trong Container có thể kết nối vào Socket RPC của PM2 đang chạy trên máy thật (Host).
+
+---
+
 
 
 ## 🔐 Mở rộng trong tương lai

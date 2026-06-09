@@ -1,0 +1,16 @@
+version: '3.8'
+
+services:
+  pm2-watch:
+    build: .
+    container_name: pm2-watch-pro
+    ports:
+      - "5173:5173"  # Dashboard UI
+      - "3000:3000"  # Backend API
+    volumes:
+      # Mount host PM2 directory to allow Agent to monitor host processes!
+      # Note: Change ~/.pm2 to the correct path if your PM2 is run by a different user
+      - ~/.pm2:/root/.pm2:ro
+    environment:
+      - NODE_ENV=production
+    restart: unless-stopped
