@@ -14,6 +14,16 @@
     "type": "git",
     "url": "git+https://github.com/noname260588/pm2-watch.git"
   },
+  "bin": {
+    "pm2-watch": "./bin/cli.js"
+  },
+  "files": [
+    "bin",
+    "backend",
+    "agent",
+    "frontend/dist",
+    "ecosystem.config.js"
+  ],
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },

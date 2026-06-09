@@ -33,70 +33,36 @@ Hệ thống được chia thành 3 phần chính (Monorepo):
 
 ## 🛠 Hướng dẫn Cài đặt & Chạy
 
-### 1. Khởi động Backend (Trung tâm)
-Backend là trạm trung chuyển dữ liệu (chạy ở cổng 3000).
+---
+
+## 🚀 Triển khai thực tế (Production) bằng 1-Click Install
+
+Thay vì phải tải mã nguồn và gõ từng lệnh, **PM2-Watch PRO** đã được đóng gói thành một Global CLI Tool cực kỳ chuyên nghiệp. 
+
+**Bước 1: Cài đặt qua NPM (Yêu cầu Node.js)**
 ```bash
-cd backend
-npm install
-node server.js
+npm install -g @noname260588/pm2-watch
 ```
 
-### 2. Khởi động Agent
-Agent cần được chạy cùng quyền User với PM2 (cùng session). Nó sẽ thu thập metrics và gửi lên Backend.
+**Bước 2: Khởi động hệ thống**
+Bạn chỉ cần gõ đúng 1 lệnh duy nhất ở bất kỳ đâu:
 ```bash
-cd agent
-npm install
-node index.js
+pm2-watch start
 ```
 
-### 3. Khởi động Frontend (Dashboard)
-Giao diện quản trị hiện đại.
-```bash
-cd frontend
-npm install
-npm run dev
-```
+Hệ thống sẽ tự động kích hoạt 3 tiến trình chạy ngầm (Backend, Agent, và UI) thông qua PM2. 
 Mở trình duyệt tại: `http://localhost:5173`
 
-### 4. Chạy Dummy App (Môi trường test)
-Để xem toàn bộ sức mạnh của Dashboard, bạn có thể chạy ứng dụng mô phỏng (Dummy App) có tích hợp sẵn `@pm2/io`:
-```bash
-# Tại thư mục gốc
-npm install
-pm2 start dummy.js --name "test-worker" --max-memory-restart 100M
-```
+**Các lệnh CLI hỗ trợ:**
+- `pm2-watch start`: Bật hệ thống giám sát.
+- `pm2-watch stop`: Tắt hệ thống.
+- `pm2-watch logs`: Xem log của máy chủ trung tâm.
+
+*Lưu ý: Để PM2 tự động bật hệ thống khi VPS khởi động lại, hãy chạy `pm2 save` và `pm2 startup`.*
 
 ---
 
-## 🚀 Triển khai thực tế (Production) bằng PM2
 
-Thay vì chạy tay bằng lệnh `node`, chính bản thân **PM2-Watch** cũng nên được quản lý bởi PM2 để đảm bảo chạy ngầm và tự động khởi động lại. Tôi đã chuẩn bị sẵn file `ecosystem.config.js` ở thư mục gốc.
-
-**Bước 1: Build Frontend ra file tĩnh**
-```bash
-cd frontend
-npm run build
-cd ..
-```
-
-**Bước 2: Khởi chạy toàn bộ bằng PM2**
-Tại thư mục gốc của dự án, bạn chạy lệnh:
-```bash
-pm2 start ecosystem.config.js
-```
-
-Lệnh này sẽ kích hoạt 3 tiến trình chạy ngầm:
-1. `pm2-watch-backend`: Khởi động máy chủ trung tâm.
-2. `pm2-watch-agent`: Khởi động Agent nội bộ thu thập dữ liệu.
-3. `pm2-watch-ui`: Serve tự động thư mục `frontend/dist` (Dashboard) ra cổng **5173**.
-
-Bạn có thể lưu cấu hình PM2 để tự khởi động lại khi máy chủ reboot:
-```bash
-pm2 save
-pm2 startup
-```
-
----
 
 ## 🔐 Mở rộng trong tương lai
 - Thêm bảo mật Token xác thực cho Agent và Frontend.
