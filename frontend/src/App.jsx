@@ -17,6 +17,7 @@ export default function App() {
   const [selectedProcess, setSelectedProcess] = useState(null);
   const [searchTerm, setSearchTerm] = useState('');
   const [filteredLogs, setFilteredLogs] = useState([]);
+  const [selectedLogProcess, setSelectedLogProcess] = useState('All');
   
   const logsEndRef = useRef(null);
   const logIdCounter = useRef(0);
@@ -85,14 +86,20 @@ export default function App() {
   }, []);
 
   useEffect(() => {
-    if (!searchTerm) {
-      setFilteredLogs(logs);
-      return;
+    let result = logs;
+    
+    if (selectedLogProcess !== 'All') {
+      result = result.filter(l => l.process_name === selectedLogProcess);
     }
-    const results = searchIndex.current.search(searchTerm);
-    const resultSet = new Set(results);
-    setFilteredLogs(logs.filter(l => resultSet.has(l._id)));
-  }, [searchTerm, logs]);
+
+    if (searchTerm) {
+      const results = searchIndex.current.search(searchTerm);
+      const resultSet = new Set(results);
+      result = result.filter(l => resultSet.has(l._id));
+    }
+    
+    setFilteredLogs(result);
+  }, [searchTerm, logs, selectedLogProcess]);
 
   useEffect(() => {
     if (activeTab === 'logs') logsEndRef.current?.scrollIntoView({ behavior: 'smooth' });
@@ -273,7 +280,17 @@ export default function App() {
               </div>
               
               <div className="flex items-center gap-3 w-full md:w-auto">
-                <div className="relative w-full md:w-72">
+                <select
+                  value={selectedLogProcess}
+                  onChange={(e) => setSelectedLogProcess(e.target.value)}
+                  className="bg-[#0a0f18] border border-slate-700 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-purple-500 shadow-inner"
+                >
+                  <option value="All">All Processes</option>
+                  {Array.from(new Set(servers.flatMap(s => (s.metrics || []).map(m => m.name)))).map(name => (
+                    <option key={name} value={name}>{name}</option>
+                  ))}
+                </select>
+                <div className="relative w-full md:w-64">
                   <Search className="w-4 h-4 text-slate-500 absolute left-3 top-1/2 -translate-y-1/2" />
                   <input 
                     type="text" 
