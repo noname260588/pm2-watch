@@ -1,14 +1,30 @@
 {
-  "name": "pm2-watch",
+  "name": "@noname260588/pm2-watch",
   "version": "1.0.0",
   "main": "dummy.js",
+  "workspaces": [
+    "frontend",
+    "backend",
+    "agent"
+  ],
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/noname260588/pm2-watch.git"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": [
+    "pm2",
+    "monitor",
+    "dashboard"
+  ],
+  "author": "noname260588",
   "license": "ISC",
-  "description": "",
+  "description": "PM2-Watch PRO - Advanced PM2 Monitoring",
   "dependencies": {
     "@pm2/io": "^6.1.0",
     "express": "^5.2.1"
