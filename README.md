@@ -68,6 +68,36 @@ pm2 start dummy.js --name "test-worker" --max-memory-restart 100M
 
 ---
 
+## 🚀 Triển khai thực tế (Production) bằng PM2
+
+Thay vì chạy tay bằng lệnh `node`, chính bản thân **PM2-Watch** cũng nên được quản lý bởi PM2 để đảm bảo chạy ngầm và tự động khởi động lại. Tôi đã chuẩn bị sẵn file `ecosystem.config.js` ở thư mục gốc.
+
+**Bước 1: Build Frontend ra file tĩnh**
+```bash
+cd frontend
+npm run build
+cd ..
+```
+
+**Bước 2: Khởi chạy toàn bộ bằng PM2**
+Tại thư mục gốc của dự án, bạn chạy lệnh:
+```bash
+pm2 start ecosystem.config.js
+```
+
+Lệnh này sẽ kích hoạt 3 tiến trình chạy ngầm:
+1. `pm2-watch-backend`: Khởi động máy chủ trung tâm.
+2. `pm2-watch-agent`: Khởi động Agent nội bộ thu thập dữ liệu.
+3. `pm2-watch-ui`: Serve tự động thư mục `frontend/dist` (Dashboard) ra cổng **5173**.
+
+Bạn có thể lưu cấu hình PM2 để tự khởi động lại khi máy chủ reboot:
+```bash
+pm2 save
+pm2 startup
+```
+
+---
+
 ## 🔐 Mở rộng trong tương lai
 - Thêm bảo mật Token xác thực cho Agent và Frontend.
 - Lưu trữ Log và History lâu dài vào cơ sở dữ liệu (MongoDB/ClickHouse).
