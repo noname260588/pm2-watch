@@ -64,10 +64,10 @@ pm2-watch start
 ```
 
 This command will start 2 background processes:
-1. `pm2-watch-backend`: The central hub and static file server running on port **3000**.
+1. `pm2-watch-backend`: The central hub and static file server running on port **2605**.
 2. `pm2-watch-agent`: The internal data collection agent.
 
-Open your browser at: `http://localhost:3000`
+Open your browser at: `http://localhost:2605`
 
 **Available CLI Commands:**
 - `pm2-watch start`: Start the monitoring system.

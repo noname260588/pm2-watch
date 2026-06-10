@@ -6,7 +6,7 @@ const { initLogRotation } = require('./logrotate');
 
 const SERVER_ID = process.env.SERVER_ID || 'server-1';
 const SERVER_NAME = process.env.SERVER_NAME || 'Node.js Server 1';
-const BACKEND_URL = process.env.BACKEND_URL || 'http://localhost:3000';
+const BACKEND_URL = process.env.BACKEND_URL || 'http://localhost:2605';
 const AGENT_API_KEY = process.env.AGENT_API_KEY || 'default_secret';
 
 console.log(`[Agent] Starting for server: ${SERVER_ID} (${SERVER_NAME})`);

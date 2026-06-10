@@ -18,7 +18,7 @@ function runCommand(cmd) {
 if (command === 'start') {
   console.log('🚀 Starting PM2-Watch PRO...');
   runCommand(`npx pm2 start "${ecosystemPath}"`);
-  console.log('\n✅ PM2-Watch PRO is now running on http://localhost:3000');
+  console.log('\n✅ PM2-Watch PRO is now running on http://localhost:2605');
   console.log('📦 Built-in Zero-Config Log Rotation is ACTIVE (10MB Max / 7 Days / Gzip).');
   console.log('💡 Type "pm2-watch logs" to see logs, or "pm2-watch stop" to stop.');
 } else if (command === 'stop') {

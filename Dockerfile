@@ -20,7 +20,7 @@ COPY --from=builder /app /app
 RUN npm install -g pm2
 
 # Expose Backend (which also serves Frontend)
-EXPOSE 3000
+EXPOSE 2605
 
 # Run the ecosystem using pm2-runtime (Docker optimized)
 CMD ["pm2-runtime", "ecosystem.config.js"]

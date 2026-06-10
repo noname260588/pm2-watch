@@ -7,7 +7,7 @@ import FlexSearch from 'flexsearch';
 import GlobalDashboard from './components/GlobalDashboard';
 import ProcessModal from './components/ProcessModal';
 
-const BACKEND_URL = 'http://localhost:3000';
+const BACKEND_URL = 'http://localhost:2605';
 
 export default function App() {
   const [socket, setSocket] = useState(null);

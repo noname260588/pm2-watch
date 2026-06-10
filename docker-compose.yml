@@ -5,7 +5,7 @@ services:
     build: .
     container_name: pm2-watch-pro
     ports:
-      - "3000:3000"  # Backend API & Dashboard UI
+      - "2605:2605"  # Backend API & Dashboard UI
     volumes:
       # Mount host PM2 directory to allow Agent to monitor host processes!
       # Note: Change ~/.pm2 to the correct path if your PM2 is run by a different user
